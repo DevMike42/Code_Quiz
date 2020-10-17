@@ -2,7 +2,7 @@
 // =============================================
 
 // Global variables for tracking quiz state
-currQuestionIndex = 0;
+let currQuestionIndex = 0;
 
 // Global variables for referencing DOM elements
 const startBtn = document.getElementById('start');
@@ -44,12 +44,21 @@ const getQuestion = function () {
     choiceNode.setAttribute('value', choice);
     choiceNode.textContent = `${i + 1}. ${choice}`;
 
+    choiceNode.onclick = gradeQuestion;
+
     choicesEl.appendChild(choiceNode);
   });
 
 }
 
 // Grade Question
+const gradeQuestion = function () {
+
+
+  currQuestionIndex++;
+  getQuestion();
+
+}
 
 // End Quiz
 
