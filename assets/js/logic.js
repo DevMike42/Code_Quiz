@@ -141,8 +141,18 @@ const saveHighscore = function () {
   }
 }
 
+// Saves high score when initials are input and user clicks ENTER
+function checkForEnter(event) {
+  // "13" represents the enter key
+  if (event.key === "Enter") {
+    saveHighscore();
+  }
+}
+
 // EVENT LISTENERS
 // =============================================
 startBtn.onclick = startQuiz;
 
 submitBtn.onclick = saveHighscore;
+
+initialsEl.onkeyup = checkForEnter;
