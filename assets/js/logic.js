@@ -19,6 +19,10 @@ const finalScoreEl = document.getElementById('final-score');
 const initialsEl = document.getElementById('initials');
 const submitBtn = document.getElementById('submit');
 
+// sound effects
+const sfxRight = new Audio("assets/sfx/correct.wav");
+const sfxWrong = new Audio("assets/sfx/incorrect.wav");
+
 
 // FUNCTIONS
 // =============================================
@@ -73,8 +77,14 @@ const gradeQuestion = function () {
     }
     timerEl.textContent = time;
 
+    // play "wrong" sound effect
+    sfxWrong.play();
+
     feedbackEl.textContent = 'Wrong!';
   } else {
+    // play "right" sound effect
+    sfxRight.play();
+
     feedbackEl.textContent = 'Correct!'
   }
 
