@@ -16,6 +16,8 @@ const choicesEl = document.getElementById('choices');
 const feedbackEl = document.getElementById('feedback');
 const endScreenEl = document.getElementById('end-screen');
 const finalScoreEl = document.getElementById('final-score');
+const initialsEl = document.getElementById('initials');
+const submitBtn = document.getElementById('submit');
 
 
 // FUNCTIONS
@@ -116,7 +118,31 @@ const endQuiz = function () {
   questionsEl.setAttribute('class', 'hide');
 }
 
+// Save high score
+const saveHighscore = function () {
+  const initialsInput = initialsEl.value.trim();
+
+  // make sure input wasn't empty
+  if (initials !== '') {
+    const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+
+    // create new score object for current user
+    const newScore = {
+      score: time,
+      initials: initialsInput
+    };
+
+    // save to local storage
+    highscores.push(newScore);
+    localStorage.setItem('highscores', JSON.stringify(highscores));
+
+    // redirect to highscores.html
+    window.location.href = 'highscores.html'
+  }
+}
 
 // EVENT LISTENERS
 // =============================================
 startBtn.onclick = startQuiz;
+
+submitBtn.onclick = saveHighscore;
