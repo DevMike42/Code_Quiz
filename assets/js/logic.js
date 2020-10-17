@@ -11,8 +11,11 @@ const timerEl = document.getElementById('time');
 const startBtn = document.getElementById('start');
 const startScreen = document.getElementById('start-screen');
 const questionsEl = document.getElementById('questions-box');
+const questionTitleEl = document.getElementById('question-title');
 const choicesEl = document.getElementById('choices');
 const feedbackEl = document.getElementById('feedback');
+const endScreenEl = document.getElementById('end-screen');
+const finalScoreEl = document.getElementById('final-score');
 
 
 // FUNCTIONS
@@ -40,7 +43,6 @@ const getQuestion = function () {
   const currentQuestion = questions[currQuestionIndex];
 
   // update UI with title and choices from question
-  const questionTitleEl = document.getElementById('question-title');
   questionTitleEl.textContent = currentQuestion.title;
 
   choicesEl.innerHTML = '';
@@ -101,9 +103,17 @@ const clockTick = function () {
 
 // End Quiz
 const endQuiz = function () {
+  // stop timer
   clearInterval(timer);
-  console.log("GAME OVER");
 
+  // show end screen
+  endScreenEl.removeAttribute('class');
+
+  // show final score 
+  finalScoreEl.textContent = time;
+
+  // hide questions box
+  questionsEl.setAttribute('class', 'hide');
 }
 
 
